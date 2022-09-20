@@ -5,8 +5,8 @@
 #include "qtxdmaapiinterface.h"
 #include "QT_IMPORT.h"
 //#include "TraceLog.h"
-#include "../3rd/include/pthread.h"
-#include "../3rd/include/LOG_DEBUG.h"
+#include "./include/pthread.h"
+#include "./include/LOG_DEBUG.h"
 
 
 extern STXDMA_CARDINFO pstCardInfo;

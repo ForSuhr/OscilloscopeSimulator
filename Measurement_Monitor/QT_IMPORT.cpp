@@ -1,7 +1,7 @@
 #include "QT_IMPORT.h"
 #include "QTXdmaApi.h"
 #include "qtxdmaapiinterface.h"
-#include "../3rd/include/pthread.h"
+#include "./include/pthread.h"
 #include "pub.h"
 
 //extern STXDMA_CARDINFO pstCardInfo;
