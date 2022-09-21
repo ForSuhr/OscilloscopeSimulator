@@ -57,6 +57,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <IncludePath>C:\Qt\6.3.2\msvc2019_64\include\QtCharts;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Qt\6.3.2\msvc2019_64\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
@@ -73,7 +75,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>QTXdmaApi.lib;pthreadVC2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>QTXdmaApi.lib;pthreadVC2.lib;Qt6Chartsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
@@ -105,6 +107,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="oscilloscope_viewer.cpp" />
     <ClCompile Include="pub.cpp" />
     <ClCompile Include="qtxdmaapiinterface.cpp" />
     <ClCompile Include="QT_IMPORT.cpp" />
@@ -117,6 +120,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="oscilloscope_viewer.h" />
     <ClInclude Include="pub.h" />
     <ClInclude Include="QTXdmaApi.h" />
     <ClInclude Include="qtxdmaapiinterface.h" />

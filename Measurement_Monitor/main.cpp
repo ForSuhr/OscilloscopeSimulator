@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    measurement();
+    //measurement();
 
     Measurement_Monitor w;
     w.show();

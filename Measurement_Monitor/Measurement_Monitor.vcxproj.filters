@@ -55,6 +55,9 @@
     <ClCompile Include="TraceLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="oscilloscope_viewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="queentest_digitizer.h">
@@ -75,5 +78,10 @@
     <ClInclude Include="TraceLog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="oscilloscope_viewer.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

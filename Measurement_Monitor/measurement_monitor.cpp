@@ -1,10 +1,18 @@
 ﻿#include "measurement_monitor.h"
 
-Measurement_Monitor::Measurement_Monitor(QWidget *parent)
-    : QMainWindow(parent)
+// Constructor
+Measurement_Monitor::Measurement_Monitor(QWidget *parent) : QMainWindow(parent)
 {
-    ui.setupUi(this);
+    ui->setupUi(this);
+
+    // Set plain text
+    ui->plainTextEdit->setPlainText("Oscilloscope");
+
+    // Set chartview
+    oscilloscope_chartview = new Oscilloscope(ui->oscilloscope_widget);
+    oscilloscope_chartview->resize(ui->oscilloscope_widget->size());
 }
 
+// Destructor
 Measurement_Monitor::~Measurement_Monitor()
 {}
