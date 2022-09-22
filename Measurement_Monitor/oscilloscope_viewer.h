@@ -1,6 +1,9 @@
 #pragma once
 #include <QtCharts>
-//#include <QChartView>
+#include <QTimer>
+#include <QSplineSeries>
+#include <QValueAxis>
+#include <QRandomGenerator>
 
 
 class Oscilloscope: public QChartView
@@ -12,10 +15,19 @@ public:
 	~Oscilloscope();
 
 public slots:
-
+	void onStart();
+	void onStop();
+	void onUpdateData();
+	
 
 private:
 	QChart* oscilloscope_chart;
+	QTimer* timer;
+	QSplineSeries* m_pSeries;
+	QValueAxis* m_pAxisx;
+	QValueAxis* m_pAxisy;
+	qreal m_x;
+	qreal m_y;
 
 };
 

@@ -1,5 +1,4 @@
 ﻿#pragma once
-
 #include <QtWidgets/QMainWindow>
 #include "ui_measurement_monitor.h"
 #include "oscilloscope_viewer.h"
@@ -14,9 +13,12 @@ public:
     Measurement_Monitor(QWidget* parent = nullptr);
     ~Measurement_Monitor();
 
-private:
-    Ui::Measurement_MonitorClass* ui;
-    Oscilloscope* oscilloscope_chartview;
+public slots:
+    void onStart();
+    void onStop();
 
-    
+
+private:
+    Ui::Measurement_MonitorClass ui;
+    Oscilloscope* oscilloscope_chartview;
 };
