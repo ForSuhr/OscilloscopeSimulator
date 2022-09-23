@@ -20,7 +20,7 @@ public:
 	void QT_BoardLunxunGatherType();
 	int QT_BoardLeiJia(int leiJiaCount, int leiJiaLength);
 	int QT_BoardChannelSet(int ChannelA, int ChannelB);
-	int QT_BoardMultiTrigerSingleDma(uint32_t dmaOnceBytes, uint32_t dmaTotolBytes, uint32_t  transmitBytes);
+	int QT_BoardMultiTriggerSingleDma(uint32_t dmaOnceBytes, uint32_t dmaTotolBytes, uint32_t  transmitBytes);
 	int QT_BoardSoftTriggerSet();
 	int QT_BoardPulseTriggerSet(int counts, int pulse_Period, int pulse_Width);
 	int QT_BoardChannelTriggerSet(int mode, int counts, int channelID, int rasing_CodeValue, int falling_CodeValue);

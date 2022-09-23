@@ -127,7 +127,7 @@ int QT_IMPORT::QT_BoardChannelSet(int ChannelA, int ChannelB) {
 	return ret;
 
 }
-int QT_IMPORT::QT_BoardMultiTrigerSingleDma(uint32_t dmaOnceBytes, uint32_t dmaTotolBytes, uint32_t  transmitBytes) {
+int QT_IMPORT::QT_BoardMultiTriggerSingleDma(uint32_t dmaOnceBytes, uint32_t dmaTotolBytes, uint32_t  transmitBytes) {
 	int ret = 0;
 
 	ret = QTXdmaApiInterface::Func_QTXdmaWriteRegister(&pstCardInfo, BASE_DMA_ADC, 0x14, dmaOnceBytes);//DMA单次搬运的长度

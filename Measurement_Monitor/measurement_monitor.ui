@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>509</width>
-    <height>400</height>
+    <width>823</width>
+    <height>476</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>43</x>
       <y>290</y>
-      <width>421</width>
-      <height>41</height>
+      <width>691</width>
+      <height>121</height>
      </rect>
     </property>
    </widget>
@@ -29,7 +29,7 @@
      <rect>
       <x>50</x>
       <y>30</y>
-      <width>411</width>
+      <width>681</width>
       <height>211</height>
      </rect>
     </property>
@@ -37,7 +37,7 @@
    <widget class="QPushButton" name="start_btn">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>500</x>
       <y>260</y>
       <width>75</width>
       <height>24</height>
@@ -50,7 +50,7 @@
    <widget class="QPushButton" name="stop_btn">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>620</x>
       <y>260</y>
       <width>75</width>
       <height>24</height>
@@ -60,13 +60,39 @@
      <string>Stop</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="initialize_btn">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>250</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Initialize</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="configure_btn">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>250</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Configure</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>509</width>
+     <width>823</width>
      <height>22</height>
     </rect>
    </property>

@@ -1,45 +1,12 @@
 ﻿#include "queentest_digitizer.h"
 
-#include <iostream>
-#include "QTXdmaApi.h"
-#include "qtxdmaapiinterface.h"
-#include "QT_IMPORT.h"
-//#include "TraceLog.h"
-#include "./include/pthread.h"
-#include "./include/LOG_DEBUG.h"
-
-
-extern STXDMA_CARDINFO pstCardInfo;
-QT_IMPORT m_Board;
 
 #define PCIE_DMA_DDR 0x000000
 #define SYMBOL2ASCII(symbol) #symbol
 #define QTFM_COMMON_TRIGGER_TYPE_RISING_EDG 2
 #define QTFM_COMMON_TRIGGER_TYPE_FALLING_EDG 3
 
-//Log_TraceLog g_Log(std::string("./logs/KunchiUpperMonitor.log"));
-//Log_TraceLog* pLog = &g_Log;
 
-/*
-void printfLog(int nLevel, const char* fmt, ...)
-{
-	if (pLog == NULL)
-		return;
-
-	char buf[1024];
-	va_list list;
-	va_start(list, fmt);
-	vsprintf(buf, fmt, list);
-	va_end(list);
-
-	pLog->Trace(nLevel, buf);
-}
-*/
-
-void measurement()
-{
-
-	printf("here");
 
 
 	/*
@@ -173,4 +140,93 @@ void measurement()
 	return 0;
 
 	*/
+
+
+// Constructor
+QueenTest_Digitizer::QueenTest_Digitizer()
+{
+	pstCardInfo = STXDMA_CARDINFO();
+	m_Board = QT_IMPORT();
+}
+
+// Destructor
+QueenTest_Digitizer::~QueenTest_Digitizer()
+{
+	;
+}
+
+
+int QueenTest_Digitizer::digitizer_connect()
+{
+	// Connect to digitizer
+	int iRet = QTXdmaOpenBoard(&pstCardInfo, 0);
+	return iRet;
+}
+
+
+int QueenTest_Digitizer::digitizer_getinfo()
+{
+	// Get digitizer info
+	m_Board.getCardInfo();
+	return 0;
+}
+
+
+int QueenTest_Digitizer::digitizer_reset()
+{
+	// Reset digitizer
+	m_Board.QT_BoardReset();
+	return 0;
+}
+
+
+int QueenTest_Digitizer::digitizer_clean_interrupt()
+{
+	// Clean interrupt
+	m_Board.QT_BoardGetInterruptClear();
+	return 0;
+}
+
+/**
+ * @brief Configure the dma
+ * @param dma_once_bytes Bytes per single transmission of dma
+ * @param dma_interrupt_bytes Bytes per interrupt signal from dma to cpu. If dma finishes transmitting this byte of data, dma will send an interrupt to the cpu.
+ * @param trigger_number Trigger number
+ * @param dma_total_bytes Total bytes from dma to memory
+ * @return 0
+*/
+int QueenTest_Digitizer::digitizer_dma_configure(Ptr_Dma_Configuration ptr_dma_configuration)
+{
+
+	uint32_t dma_total_bytes = ptr_dma_configuration->dma_interrupt_bytes * ptr_dma_configuration->trigger_number;
+
+	// Call dma api to configure the dma, tell the dma how to transmit data
+	m_Board.QT_BoardMultiTriggerSingleDma
+	(	ptr_dma_configuration->dma_once_bytes,
+		ptr_dma_configuration->dma_interrupt_bytes,
+		dma_total_bytes
+	);
+	return 0;
+}
+
+
+int QueenTest_Digitizer::digitizer_mode_configure()
+{
+	m_Board.QT_BoardSoftTriggerSet();
+	return 0;
+}
+
+
+int QueenTest_Digitizer::digitizer_pcie_interrupt()
+{
+	m_Board.QT_BoardEnableInterruptSwitch();
+	return 0;
+}
+
+
+int QueenTest_Digitizer::digitizer_disconnect()
+{
+	// Disconnect from digitizer
+	QTXdmaCloseBoard(&pstCardInfo);
+	return 0;
 }
