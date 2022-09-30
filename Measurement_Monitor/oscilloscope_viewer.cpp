@@ -5,7 +5,7 @@ Oscilloscope::Oscilloscope(QWidget* parent) : QChartView(parent)
 {
     // Set chart
     oscilloscope_chart = new QChart();
-    oscilloscope_chart->setTitle("Oscilloscope Chart");
+    oscilloscope_chart->setTitle("Oscilloscope");
 	oscilloscope_chart->legend()->hide();
 	oscilloscope_chart->setAnimationOptions(QChart::AllAnimations);
 
@@ -18,10 +18,10 @@ Oscilloscope::Oscilloscope(QWidget* parent) : QChartView(parent)
 
 
 
-    m_pAxisx = new QValueAxis();
-    m_pAxisy = new QValueAxis();
+    m_pAxisx = new QValueAxis(this);
+    m_pAxisy = new QValueAxis(this);
 
-    m_x = 8;
+    m_x = 10;
     m_y = 1;
 
     QPen pen(Qt::blue);
@@ -48,6 +48,7 @@ Oscilloscope::Oscilloscope(QWidget* parent) : QChartView(parent)
 // Destructor
 Oscilloscope::~Oscilloscope()
 {
+    delete oscilloscope_chart;
 }
 
 void Oscilloscope::onStart()
@@ -74,4 +75,3 @@ void Oscilloscope::onUpdateData()
 
     oscilloscope_chart->scroll(x, 0);
 }
-

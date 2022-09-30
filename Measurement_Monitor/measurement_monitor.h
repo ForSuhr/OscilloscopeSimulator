@@ -5,6 +5,8 @@
 #include "queentest_digitizer.h"
 
 
+
+
 class Measurement_Monitor : public QMainWindow
 {
     Q_OBJECT
@@ -14,16 +16,17 @@ public:
     ~Measurement_Monitor();
 
 public slots:
-    void onStart();
-    void onStop();
-    void initialize();
-    void configure();
-
+    void on_btnStart_clicked();
+    void on_btnStop_clicked();
+    void on_btnInitialize_clicked();
+    void on_btnConfigure_clicked();
 
 private:
     Ui::Measurement_MonitorClass ui;
     Oscilloscope* oscilloscope_chartview;
-    QueenTest_Digitizer queentest_digitizer;
+    QueenTest_Digitizer* queentest_digitizer;
     struct Dma_Configuration dma_configuration;
     Ptr_Dma_Configuration ptr_dma_configuration;
+    
+    
 };
