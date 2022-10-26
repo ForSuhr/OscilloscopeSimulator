@@ -113,6 +113,7 @@
     <ClCompile Include="QT_IMPORT.cpp" />
     <ClCompile Include="queentest_digitizer.cpp" />
     <ClCompile Include="TraceLog.cpp" />
+    <ClCompile Include="waveform.cpp" />
     <QtRcc Include="measurement_monitor.qrc" />
     <QtUic Include="measurement_monitor.ui" />
     <QtMoc Include="measurement_monitor.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="waveform.h" />
     <QtMoc Include="oscilloscope_viewer.h" />
     <ClInclude Include="pub.h" />
     <ClInclude Include="QTXdmaApi.h" />

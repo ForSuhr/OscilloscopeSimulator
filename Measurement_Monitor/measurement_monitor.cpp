@@ -9,8 +9,10 @@ Measurement_Monitor::Measurement_Monitor(QWidget *parent) : QMainWindow(parent)
     ui.plainTextEdit->setPlainText("Oscilloscope");
 
     // Set chartview
-    oscilloscope_chartview = new Oscilloscope(ui.oscilloscope_widget);
-    oscilloscope_chartview->resize(ui.oscilloscope_widget->size());
+   /* oscilloscope_chartview = new Oscilloscope(ui.oscilloscope_widget);
+    oscilloscope_chartview->resize(ui.oscilloscope_widget->size());*/
+    waveform_chartview = new waveform(ui.oscilloscope_widget);
+    waveform_chartview->resize(ui.oscilloscope_widget->size());
 
     // Define QueenTest_Digitizer
     queentest_digitizer = new QueenTest_Digitizer();
@@ -27,8 +29,10 @@ Measurement_Monitor::Measurement_Monitor(QWidget *parent) : QMainWindow(parent)
     // Set buttons
     QObject::connect(ui.btnStart, &QPushButton::clicked, this, &Measurement_Monitor::on_btnStart_clicked);
     QObject::connect(ui.btnStop, &QPushButton::clicked, this, &Measurement_Monitor::on_btnStop_clicked);
+    QObject::connect(ui.btnWaveform, &QPushButton::clicked, this, &Measurement_Monitor::on_btnWaveform_clicked);
     QObject::connect(ui.btnInitialize, &QPushButton::clicked, this, &Measurement_Monitor::on_btnInitialize_clicked);
     QObject::connect(ui.btnConfigure, &QPushButton::clicked, this, &Measurement_Monitor::on_btnConfigure_clicked);
+    
 
 }
 
@@ -72,6 +76,11 @@ void Measurement_Monitor::on_btnStop_clicked()
     oscilloscope_chartview->onStop();
     queentest_digitizer->digitizer_stop_adc();
     ui.plainTextEdit->appendPlainText("Acquisition stopped");
+}
+
+void Measurement_Monitor::on_btnWaveform_clicked()
+{
+    waveform_chartview->plot();
 }
 
 

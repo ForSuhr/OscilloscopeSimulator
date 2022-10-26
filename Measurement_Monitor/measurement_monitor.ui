@@ -86,6 +86,19 @@
      <string>Configure</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnWaveform">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>250</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Waveform</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
