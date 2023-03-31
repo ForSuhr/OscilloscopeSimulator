@@ -19,8 +19,8 @@ Oscilloscope::Oscilloscope(QWidget* parent)
     m_pAxisx = new QValueAxis(this);
     m_pAxisy = new QValueAxis(this);
 
-    m_x = 10;
-    m_y = 1;
+    m_x = 5;
+    m_y = 0;
 
     QPen pen(Qt::blue);
     pen.setWidth(2);
@@ -39,7 +39,7 @@ Oscilloscope::Oscilloscope(QWidget* parent)
     m_pAxisx->setTickCount(1);
     m_pAxisx->setTickCount(1);
 
-    m_pAxisx->setRange(0, 10);
+    m_pAxisx->setRange(0, m_x*2);
     m_pAxisy->setRange(-12, 12);
 }
 
