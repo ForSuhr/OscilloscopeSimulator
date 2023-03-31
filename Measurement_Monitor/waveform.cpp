@@ -1,5 +1,3 @@
-
-
 #include "waveform.h"
 
 
@@ -39,9 +37,6 @@ waveform::waveform(QWidget* parent) : QChartView(parent)
 
     m_pAxisx->setRange(0, 10000);
     m_pAxisy->setRange(-10000, 10000);
-
-
-
 }
 
 
@@ -55,7 +50,6 @@ void waveform::plot()
     qreal x = waveform_chart->plotArea().width() / this->m_pAxisx->tickCount();
 
     qreal xValue = (this->m_pAxisx->max() - this->m_pAxisx->min()) / this->m_pAxisx->tickCount();
-
 
     this->buffer[CHNUMBER * BUFFSIZE] = {};
     this->ch1[BUFFSIZE] = {};

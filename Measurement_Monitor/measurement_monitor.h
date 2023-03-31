@@ -5,9 +5,6 @@
 #include "queentest_digitizer.h"
 #include "waveform.h"
 
-
-
-
 class Measurement_Monitor : public QMainWindow
 {
     Q_OBJECT
@@ -25,11 +22,10 @@ public slots:
 
 private:
     Ui::Measurement_MonitorClass ui;
-    Oscilloscope* oscilloscope_chartview;
-    waveform* waveform_chartview;
-    QueenTest_Digitizer* queentest_digitizer;
+    Oscilloscope* oscilloscope_chartview = nullptr;
+    waveform* waveform_chartview = nullptr;
+    QueenTest_Digitizer* queentest_digitizer = nullptr;
+
     struct Dma_Configuration dma_configuration;
     Ptr_Dma_Configuration ptr_dma_configuration;
-    
-    
 };

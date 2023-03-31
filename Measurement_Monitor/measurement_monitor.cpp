@@ -1,7 +1,8 @@
 ﻿#include "measurement_monitor.h"
 
 
-Measurement_Monitor::Measurement_Monitor(QWidget *parent) : QMainWindow(parent)
+Measurement_Monitor::Measurement_Monitor(QWidget *parent) 
+    : QMainWindow(parent)
 {
     ui.setupUi(this);
     
@@ -9,10 +10,10 @@ Measurement_Monitor::Measurement_Monitor(QWidget *parent) : QMainWindow(parent)
     ui.plainTextEdit->setPlainText("Oscilloscope");
 
     // Set chartview
-   /* oscilloscope_chartview = new Oscilloscope(ui.oscilloscope_widget);
-    oscilloscope_chartview->resize(ui.oscilloscope_widget->size());*/
-    waveform_chartview = new waveform(ui.oscilloscope_widget);
-    waveform_chartview->resize(ui.oscilloscope_widget->size());
+    oscilloscope_chartview = new Oscilloscope(ui.oscilloscope_widget);
+    oscilloscope_chartview->resize(ui.oscilloscope_widget->size());
+    //waveform_chartview = new waveform(ui.oscilloscope_widget);
+    //waveform_chartview->resize(ui.oscilloscope_widget->size());
 
     // Define QueenTest_Digitizer
     queentest_digitizer = new QueenTest_Digitizer();
@@ -25,18 +26,7 @@ Measurement_Monitor::Measurement_Monitor(QWidget *parent) : QMainWindow(parent)
         10 // trigger_number
     };
     ptr_dma_configuration = &dma_configuration;
-
-    // Set buttons
-    QObject::connect(ui.btnStart, &QPushButton::clicked, this, &Measurement_Monitor::on_btnStart_clicked);
-    QObject::connect(ui.btnStop, &QPushButton::clicked, this, &Measurement_Monitor::on_btnStop_clicked);
-    QObject::connect(ui.btnWaveform, &QPushButton::clicked, this, &Measurement_Monitor::on_btnWaveform_clicked);
-    QObject::connect(ui.btnInitialize, &QPushButton::clicked, this, &Measurement_Monitor::on_btnInitialize_clicked);
-    QObject::connect(ui.btnConfigure, &QPushButton::clicked, this, &Measurement_Monitor::on_btnConfigure_clicked);
-    
-
 }
-
-
 
 Measurement_Monitor::~Measurement_Monitor()
 {
@@ -45,24 +35,20 @@ Measurement_Monitor::~Measurement_Monitor()
     delete queentest_digitizer;
 }
 
-
 void Measurement_Monitor::on_btnStart_clicked()
 {
-    queentest_digitizer->foo();
-    queentest_digitizer->start();
-    //oscilloscope_chartview->onStart();
+    // queentest_digitizer->foo();
+    // queentest_digitizer->start();
+    oscilloscope_chartview->onStart();
+    ui.plainTextEdit->appendPlainText("Started");
     
     //this->start();
 
-    
     //queentest_digitizer->digitizer_buffer_set();
     //ui.plainTextEdit->appendPlainText("Memory allocated");
 
     //std::thread t1(&QueenTest_Digitizer::digitizer_start_adc, queentest_digitizer);
     //ui.plainTextEdit->appendPlainText("Acquisition started");
-
-
-
 
     //for (auto i : ch1)
     //{
@@ -74,15 +60,14 @@ void Measurement_Monitor::on_btnStart_clicked()
 void Measurement_Monitor::on_btnStop_clicked()
 {
     oscilloscope_chartview->onStop();
-    queentest_digitizer->digitizer_stop_adc();
-    ui.plainTextEdit->appendPlainText("Acquisition stopped");
+    // queentest_digitizer->digitizer_stop_adc();
+    ui.plainTextEdit->appendPlainText("Stopped");
 }
 
 void Measurement_Monitor::on_btnWaveform_clicked()
 {
     waveform_chartview->plot();
 }
-
 
 void Measurement_Monitor::on_btnInitialize_clicked()
 {
@@ -97,9 +82,7 @@ void Measurement_Monitor::on_btnInitialize_clicked()
 
     queentest_digitizer->digitizer_clean_interrupt();
     ui.plainTextEdit->appendPlainText("Interrupt cleaned");
-
 }
-
 
 void Measurement_Monitor::on_btnConfigure_clicked()
 {

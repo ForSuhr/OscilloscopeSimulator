@@ -1,22 +1,20 @@
 #include "oscilloscope_viewer.h"
 
-// Constructor
-Oscilloscope::Oscilloscope(QWidget* parent) : QChartView(parent)
+Oscilloscope::Oscilloscope(QWidget* parent) 
+    : QChartView(parent),
+    oscilloscopeChart(new QChart)
 {
     // Set chart
-    oscilloscope_chart = new QChart();
-    oscilloscope_chart->setTitle("Oscilloscope");
-	oscilloscope_chart->legend()->hide();
-	oscilloscope_chart->setAnimationOptions(QChart::AllAnimations);
+    oscilloscopeChart->setTitle("Oscilloscope");
+    oscilloscopeChart->legend()->hide();
+    oscilloscopeChart->setAnimationOptions(QChart::AllAnimations);
 
-    // Put the chart into oscilloscope chartview
-    this->setChart(oscilloscope_chart);
+    // set chartview
+    this->setChart(oscilloscopeChart);
 
     // Set QTimer
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Oscilloscope::onUpdateData);
-
-
 
     m_pAxisx = new QValueAxis(this);
     m_pAxisy = new QValueAxis(this);
@@ -31,10 +29,10 @@ Oscilloscope::Oscilloscope(QWidget* parent) : QChartView(parent)
     m_pSeries->setPen(pen);
     m_pSeries->append(m_x, m_y);
 
-    oscilloscope_chart->addSeries(m_pSeries);
+    oscilloscopeChart->addSeries(m_pSeries);
 
-    oscilloscope_chart->addAxis(m_pAxisx, Qt::AlignBottom);
-    oscilloscope_chart->addAxis(m_pAxisy, Qt::AlignLeft);
+    oscilloscopeChart->addAxis(m_pAxisx, Qt::AlignBottom);
+    oscilloscopeChart->addAxis(m_pAxisy, Qt::AlignLeft);
 
     m_pSeries->attachAxis(m_pAxisx);
     m_pSeries->attachAxis(m_pAxisy);
@@ -42,13 +40,12 @@ Oscilloscope::Oscilloscope(QWidget* parent) : QChartView(parent)
     m_pAxisx->setTickCount(1);
 
     m_pAxisx->setRange(0, 10);
-    m_pAxisy->setRange(-1.5, 1.5);
+    m_pAxisy->setRange(-12, 12);
 }
 
-// Destructor
 Oscilloscope::~Oscilloscope()
 {
-    delete oscilloscope_chart;
+    delete oscilloscopeChart;
 }
 
 void Oscilloscope::onStart()
@@ -63,15 +60,15 @@ void Oscilloscope::onStop()
 
 void Oscilloscope::onUpdateData()
 {
-    qreal x = oscilloscope_chart->plotArea().width() / this->m_pAxisx->tickCount();
+    qreal x = oscilloscopeChart->plotArea().width() / this->m_pAxisx->tickCount();
 
     qreal xValue = (this->m_pAxisx->max() - this->m_pAxisx->min()) / this->m_pAxisx->tickCount();
     this->m_x += xValue;
 
-    qreal yValue = QRandomGenerator::global()->bounded(-1, 1);
+    qreal yValue = QRandomGenerator::global()->bounded(-10, 10);
     this->m_y = yValue;
 
     this->m_pSeries->append(this->m_x, this->m_y);
 
-    oscilloscope_chart->scroll(x, 0);
+    oscilloscopeChart->scroll(x, 0);
 }

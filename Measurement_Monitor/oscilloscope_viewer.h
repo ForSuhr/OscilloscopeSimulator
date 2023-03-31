@@ -21,13 +21,13 @@ public slots:
 	
 
 private:
-	QChart* oscilloscope_chart;
-	QTimer* timer;
-	QSplineSeries* m_pSeries;
-	QValueAxis* m_pAxisx;
-	QValueAxis* m_pAxisy;
+	QChart* oscilloscopeChart = nullptr;
+	QTimer* timer = nullptr;
+	QSplineSeries* m_pSeries = nullptr;
+	QValueAxis* m_pAxisx = nullptr;
+	QValueAxis* m_pAxisy = nullptr;
+
 	qreal m_x;
 	qreal m_y;
-
 };
 
