@@ -5,6 +5,8 @@ Measurement_Monitor::Measurement_Monitor(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+
+    setWindowTitle("Oscilloscope Simulator");
     
     // Set plain text
     ui.plainTextEdit->setPlainText("Oscilloscope");
